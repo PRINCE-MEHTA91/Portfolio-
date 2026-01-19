@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.vertical-timeline-element-content .vertical-timeline-element-date {
+  opacity: 1 !important;
+}
+
+.vertical-timeline--animate .vertical-timeline-element-content.is-hidden {
+  opacity: 0 !important;
+}
+
+.vertical-timeline--animate .vertical-timeline-element-icon.is-hidden {
+  visibility: hidden !important;
+}
+.vertical-timeline-element-icon {
+  box-shadow: 0 0 0 4px #e5e7eb, inset 0 2px 0 rgba(0, 0, 0, 0.08),
+    0 3px 0 4px rgba(0, 0, 0, 0.05) !important;
+}
+.dark .vertical-timeline-element-icon {
+  box-shadow: 0 0 0 4px #4f4f4f, inset 0 2px 0 rgba(0, 0, 0, 0.08),
+    0 3px 0 4px rgba(0, 0, 0, 0.05) !important;
+}
+.vertical-timeline-element-content {
+  box-shadow: 0 3px 0 #e5e7eb !important;
+}
+.dark .vertical-timeline-element-content {
+  box-shadow: 0 3px 0 #4f4f4f !important;
+}
+.vertical-timeline::before {
+  background: #e5e7eb !important;
+}
+.dark .vertical-timeline::before {
+  background: #4f4f4f !important;
+}
