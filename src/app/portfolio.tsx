@@ -9,7 +9,7 @@ const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove);
@@ -66,7 +66,7 @@ const Portfolio = () => {
 };
 
 // Navigation Component
-const Navigation = ({ theme, toggleTheme }) => (
+const Navigation = ({ theme, toggleTheme }: { theme: string, toggleTheme: () => void }) => (
   <motion.nav
     initial={{ y: -100 }}
     animate={{ y: 0 }}
@@ -429,7 +429,7 @@ const Contact = () => (
           whileInView={{ opacity: 1, x: 0 }} 
           viewport={{ once: true }} 
           className="backdrop-blur-xl bg-white/50 dark:bg-slate-900/50 rounded-3xl p-8 border border-slate-200/50 dark:border-slate-800/50 shadow-xl space-y-4"
-          onSubmit={(e) => {
+          onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             console.log('Form submitted!');
           }}
