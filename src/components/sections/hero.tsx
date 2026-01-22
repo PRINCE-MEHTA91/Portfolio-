@@ -1,106 +1,60 @@
 "use client";
-import Link from "next/link";
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-export function Hero() {
-  return (
-    <section
-      id="home"
-      className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
-    >
-      <div className="flex items-center justify-center">
-        <div className="relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "tween",
-              duration: 0.2,
-            }}
-          >
-            <div className="w-24 h-24 rounded-full overflow-hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 100"
-                className="w-full h-full object-cover"
-              >
-                <circle cx="50" cy="50" r="50" fill="#ddd" />
-                <path
-                  d="M50 85C35.8333 85 24.1667 75.6667 25 62C25.8333 48.3333 35.8333 45.3333 50 45C64.1667 44.6667 75.8333 48.3333 75 62C74.1667 75.6667 64.1667 85 50 85Z"
-                  fill="#aaa"
-                />
-                <circle cx="50" cy="30" r="15" fill="#aaa" />
-              </svg>
+const Hero = () => {
+    const { scrollYProgress } = useScroll();
+    const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+
+    return (
+        <motion.section
+            style={{ opacity, scale }}
+            className="relative min-h-screen flex items-center justify-center px-6 pt-20"
+        >
+            <div className="max-w-4xl mx-auto text-center z-10">
+                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+                    <motion.div className="mb-8 flex justify-center" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1, type: 'spring' }}>
+                        <div className="relative group">
+                            <motion.div
+                                className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                <img src="/me.jpg" alt="Profile" className="w-full h-full object-cover" />
+                            </motion.div>
+                            <motion.div
+                                className="absolute inset-0 rounded-full border-2 border-blue-500"
+                                animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
+                                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                            />
+                        </div>
+                    </motion.div>
+                    <motion.h2 className="text-xl md:text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+                        Hello, I'm
+                    </motion.h2>
+                    <motion.h1
+                        className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4, type: 'spring' }}
+                    >
+                        Prince Kumar
+                    </motion.h1>
+                    <motion.p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
+                        Crafting elegant solutions with modern technologies. Specialized in full-stack web development and Android applications.
+                    </motion.p>
+                    <motion.div className="flex gap-4 justify-center flex-wrap" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
+                        <motion.a href="#projects" className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-lg shadow-blue-500/50" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                            View Projects
+                        </motion.a>
+                        <motion.a href="#contact" className="px-8 py-4 backdrop-blur-lg bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-full font-semibold" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                            Get in Touch
+                        </motion.a>
+                    </motion.div>
+                </motion.div>
             </div>
-          </motion.div>
+        </motion.section>
+    );
+};
 
-          <motion.span
-            className="absolute bottom-0 right-0 text-4xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 125,
-              delay: 0.1,
-              duration: 0.7,
-            }}
-          >
-            👋
-          </motion.span>
-        </div>
-      </div>
-
-      <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <span className="font-bold">Hello, I'm a</span>{" "}
-        <span className="font-bold">Software Developer</span> with a passion for creating
-        beautiful and functional applications. I specialize in{" "}
-        <span className="underline">full-stack and Android development</span>.
-      </motion.h1>
-
-      <motion.div
-        className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.1,
-        }}
-      >
-        <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-        >
-          Contact me here
-        </Link>
-
-        <a
-          className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="/resume.pdf"
-          download
-        >
-          Download CV
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://linkedin.com"
-          target="_blank"
-        >
-          LinkedIn
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://github.com"
-          target="_blank"
-        >
-          GitHub
-        </a>
-      </motion.div>
-    </section>
-  );
-}
+export default Hero;
