@@ -16,7 +16,7 @@ const Projects = () => {
         {
             title: 'Pustakguru App',
             description: 'PustakGuru is a smart Android application designed to make book discovery simple, fast, and user-friendly. It allows users to search books, view details, save favorites, and access PDFs all in one place.',
-            tech: ['Android', 'Java', 'RESFULLAPI', 'Firebase'],
+            tech: ['Android', 'Java', 'RESTfull API', 'Firebase'],
             github: 'https://github.com/PRINCE-MEHTA91/Pustakguru',
             demo: '#',
             gradient: 'from-purple-500 to-pink-500'
@@ -24,7 +24,7 @@ const Projects = () => {
         {
             title: 'ECOPICK',
             description: 'Content management system for portfolios with drag-and-drop builder and SEO optimization.',
-            tech: ['Node.js', 'Express.js', 'RESTFULL API', 'Html Css', 'Tailwind Css', 'JavaScript'],
+            tech: ['Node.js', 'Express.js', 'RESTfull API', 'Html Css', 'Tailwind Css', 'JavaScript'],
             github: '#',
             demo: '#',
             gradient: 'from-orange-500 to-red-500'

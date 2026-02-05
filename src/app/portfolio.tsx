@@ -10,6 +10,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove);
